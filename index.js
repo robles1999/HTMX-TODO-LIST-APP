@@ -29,26 +29,100 @@ const defaultData = {
 };
 const db = new Low(adapter, defaultData);
 await db.read();
+
+handlebars.registerHelper("ifEqual", function (arg1, arg2, options) {
+    return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+});
+
 const todoInput = handlebars.compile(readFileSync(`${__dirname}/views/partials/todo-input.handlebars`, "utf-8"));
 const todoItem = handlebars.compile(readFileSync(`${__dirname}/views/partials/todo-item.handlebars`, "utf-8"));
+const filterBtns = handlebars.compile(readFileSync(`${__dirname}/views/partials/filter-btns.handlebars`, "utf-8"));
+// const todoItemEdit = handlebars.compile(readFileSync(`${__dirname}/views/partials/todo-item-edit.handlebars`, "utf-8"));
 
+const FILTER_MAP = {
+    All: () => true,
+    Active: (todo) => !todo.completed,
+    Completed: (todo) => todo.completed,
+};
+
+const FILTER_NAMES = Object.keys(FILTER_MAP);
 /**
  * Routes
  */
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
     const { todos } = db.data;
-    res.render('index', { partials: { todoInput, todoItem }, todos });
+    const selectedFilter = req.query.filter ?? 'All';
+    res.render('index', { partials: { todoInput, todoItem, filterBtns }, todos, filters: FILTER_NAMES, selectedFilter });
 });
 
 app.post('/todos', async (req, res) => {
     const { todo } = req.body;
     const newTodo = { id: uuid(), completed: false, name: todo };
+    const selectedFilter = req.query.filter ?? 'All';
     db.data.todos.push(newTodo);
     await db.write();
     const { todos } = db.data;
-    res.render("index", { layout: false, partials: { todoInput, todoItem }, todos });
-    // setTimeout(() => {
-    // }, 2000);
+    res.render("index", { layout: false, partials: { todoInput, todoItem, filterBtns }, todos, filters: FILTER_NAMES, selectedFilter });
+});
+
+app.patch('/todos/:id', async (req, res) => {
+    const { id } = req.params;
+    const { completed } = req.body;
+    const selectedFilter = req.query.filter ?? 'All';
+
+    const todo = db.data.todos.find(todo => todo.id === id);
+
+    if (!todo) {
+        return res.status(404).send('Todo not found.');
+    }
+
+    todo.completed = !!completed;
+
+    await db.write();
+    const { todos } = db.data;
+
+    res.render("index", { layout: false, partials: { todoInput, todoItem, filterBtns }, todos, filters: FILTER_NAMES, selectedFilter });
+});
+
+app.delete('/todos/:id', async (req, res) => {
+    const { id } = req.params;
+    const idx = db.data.todos.find(todo => id === id);
+    if (idx !== -1) {
+        db.data.todos.splice(idx, 1);
+        await db.write();
+    }
+    return res.send("");
+});
+
+app.get('/todos/:id/edit', (req, res) => {
+    const { id } = req.params;
+    const todo = db.data.todos.find(todo => id === id);
+    if (!todo) {
+        return res.status(404).send('Todo not found.');
+    }
+    return res.render('partials/todo-item-edit', { layout: false, ...todo, });
+});
+
+app.get('/todos/:id', (req, res) => {
+    const { id } = req.params;
+    const todo = db.data.todos.find(todo => todo.id === id);
+    if (!todo) {
+        return res.status(404).send('Todo not found.');
+    }
+    return res.render('partials/todo-item', { layout: false, ...todo });
+});
+
+app.put('/todos/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+    const todo = db.data.todos.find(todo => todo.id === id);
+    if (!todo) {
+        return res.status(404).send('Todo not found.');
+    }
+    todo.name = name;
+    await db.write();
+
+    return res.render('partials/todo-item', { layout: false, ...todo });
 });
 
 app.listen(PORT, () => {

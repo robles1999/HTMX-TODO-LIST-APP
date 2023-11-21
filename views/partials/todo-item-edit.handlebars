@@ -1,0 +1,37 @@
+<div id="todo-edit-{{this.id}}">
+    <form
+        hx-put="/todos/{{this.id}}"
+        hx-target="#todo-edit-{{this.id}}"
+        hx-swap="outerHTML"
+        class="flex items-center mb-4 justify-between gap-4"
+    >
+        <input
+            class="w-3/4 rounded-sm text-black p-1"
+            name="name"
+            type="text"
+            value="{{this.name}}"
+        >
+        <button
+            class="border-2 text-sm border-amber-500 p-2 rounded-md uppercase font-bold transition-all hover:bg-indigo-400 mr-2 hover:scale-105 w-1/4"
+            type="submit"
+        >Save</button>
+        <button
+            hx-get="/todos/{{this.id}}"
+            hx-target="#todo-edit-{{this.id}}"
+            hx-swap="outerHTML"
+            class="
+            border-2
+            text-sm
+            border-nutral-500
+            p-2
+            rounded-md
+            uppercase
+            font-bold
+            transition-all
+            hover:bg-indigo-400
+            mr-2
+            hover:scale-105
+            w-1/4"
+        >Cancel</button>
+    </form>
+</div>
