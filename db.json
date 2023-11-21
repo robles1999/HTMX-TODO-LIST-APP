@@ -1,0 +1,114 @@
+{
+  "todos": [
+    {
+      "id": "42390c4b-17ec-4e89-9d9f-0cab215b9609",
+      "completed": false,
+      "name": "Learn HTMX"
+    },
+    {
+      "id": "b213aa9b-42df-4420-9503-a8ca3c4d6edc",
+      "completed": false,
+      "name": "Learn CSS"
+    },
+    {
+      "id": "47695c9a-0dab-4609-abb2-91476af53398",
+      "completed": false,
+      "name": "Learn CSS"
+    },
+    {
+      "id": "6cc6c236-26ec-4df3-991a-e7b388039715",
+      "completed": false,
+      "name": "Learn React"
+    },
+    {
+      "id": "8f31ed93-1aa9-4ec6-9506-fdc0e160ab43",
+      "completed": false,
+      "name": "Test"
+    },
+    {
+      "id": "ae22ab26-8d87-4aba-8ca9-5482d2a0d19a",
+      "completed": false,
+      "name": "Learn HTMX"
+    },
+    {
+      "id": "d816bb0d-2a5b-49fd-91e9-f36ded42e7df",
+      "completed": false,
+      "name": "You need help teaching."
+    },
+    {
+      "id": "bc762547-4a13-484a-9c55-d6c994ba736f",
+      "completed": false,
+      "name": "Learn React"
+    },
+    {
+      "id": "e7b581b7-df49-4b05-9fe5-46170458ea74",
+      "completed": false,
+      "name": "Learn View"
+    },
+    {
+      "id": "add72a58-c3bc-4013-8500-afad89262616",
+      "completed": false,
+      "name": "Learn CSS"
+    },
+    {
+      "id": "932f79e7-5583-4e8f-b3d1-88e98a601954",
+      "completed": false,
+      "name": "Learn HTML"
+    },
+    {
+      "id": "e461a3d6-17dd-4a30-a429-d9ddf6aa92c9",
+      "completed": false,
+      "name": "Learn HTMX"
+    },
+    {
+      "id": "f1de0f87-c707-469e-aee4-596b8a4a9a1d",
+      "completed": false,
+      "name": "Test"
+    },
+    {
+      "id": "7acff988-aa12-40c1-883b-b942fdd34a2e",
+      "completed": false,
+      "name": "Learn React"
+    },
+    {
+      "id": "08a1d851-7b42-4cca-9d6d-70c27878dcba",
+      "completed": false,
+      "name": "Learn HTMX"
+    },
+    {
+      "id": "76b725fa-c641-4214-8264-a2432fd70573",
+      "completed": false,
+      "name": "Learn JS"
+    },
+    {
+      "id": "8aa70e77-c6c8-43d7-bc85-12d3d32cfcc4",
+      "completed": false,
+      "name": "Learn React"
+    },
+    {
+      "id": "d89c8baf-7f63-41cd-94b6-3f6f646dc130",
+      "completed": false,
+      "name": "Test"
+    },
+    {
+      "id": "69a9a4d2-3999-4d89-a98f-16de3192eae6",
+      "completed": false,
+      "name": "Learn JS"
+    },
+    {
+      "id": "9b400f09-b9c2-4ccc-8028-8c50e2f56096",
+      "completed": false,
+      "name": "Learn HTMX"
+    },
+    {
+      "id": "c4713e37-1e77-4b79-8f06-f1717214a221",
+      "completed": false,
+      "name": "Learn CSS"
+    },
+    {
+      "id": "d9b2e3f7-15ae-4803-8a10-9b1d2d89b0f7",
+      "completed": false,
+      "name": "Learn HTML"
+    }
+  ]
+}

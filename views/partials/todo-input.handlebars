@@ -1,0 +1,11 @@
+{{!-- <form hx-post="/todos" hx-target="body" hx-swap="innerHTML"> --}}
+<form hx-post="/todos" hx-target="body" hx-swap="innerHTML">
+    <input class="block w-full rounded-lg p-4 text-black text-2xl" type="text" name="todo" required minlength="5"
+           placeholder="What's on your mind?" autofocus>
+    <button hx-disabled-elt="this" type="submit"
+            class="block w-full rounded-lg text-xl mt-4 bg-amber-500 uppercase p-2 font-bold hover:bg-amber-600 transition-all hover:translate-y-1 hover:shadow-lg">Add
+        Todo</button>
+    <div id="loadingIndicator" class="flex items-center my-indicator justify-center my-8">
+        <img src="assets/bars.svg" alt="loading indicator" class="h-12 w-12 mx-auto">
+    </div>
+</form>
