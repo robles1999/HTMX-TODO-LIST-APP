@@ -16,7 +16,7 @@
             type="submit"
         >Save</button>
         <button
-            hx-get="/todos/{{this.id}}"
+            hx-get="/todos/{{this.id}}?filter={{this.selectedFilter}}"
             hx-target="#todo-edit-{{this.id}}"
             hx-swap="outerHTML"
             class="

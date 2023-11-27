@@ -1,34 +1,29 @@
 {
   "todos": [
     {
-      "id": "6a679253-752f-45a4-b8fd-dba0947f4a92",
+      "id": "f5938be0-b1fb-4ea5-90de-8ad863cd74f0",
+      "completed": true,
+      "name": "Learn Svelte"
+    },
+    {
+      "id": "3f8dd639-9de3-4473-a503-d180f5d4a8a5",
+      "completed": false,
+      "name": "Learn HTMX"
+    },
+    {
+      "id": "fd820cdb-e326-459d-b065-3f2172e1140c",
       "completed": false,
       "name": "Learn React"
     },
     {
-      "id": "e55ed994-f090-4923-933a-794179d0fc43",
+      "id": "0beee3ed-00ab-4999-9fba-7a6e58828139",
       "completed": false,
       "name": "Learn JS"
     },
     {
-      "id": "336cc216-bb9c-4cdf-910d-e04f1d36d499",
-      "completed": false,
-      "name": "Learn CSS"
-    },
-    {
-      "id": "e37bffb3-1d62-4726-8843-09af9c7abe15",
+      "id": "f68eadee-e132-4ba4-b067-ff550efb6b82",
       "completed": false,
       "name": "Learn View"
-    },
-    {
-      "id": "892e18df-a2b2-4053-8029-8800067c28cb",
-      "completed": false,
-      "name": "Learn DJango"
-    },
-    {
-      "id": "7b217735-76f3-4078-aef2-71e4d06727e1",
-      "completed": false,
-      "name": "Learn Svelte"
     }
   ]
 }
