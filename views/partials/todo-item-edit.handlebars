@@ -2,7 +2,7 @@
     <form
         hx-put="/todos/{{this.id}}"
         hx-target="#todo-edit-{{this.id}}"
-        hx-swap="outerHTML"
+        hx-swap="outerHTML transition:true"
         class="flex items-center mb-4 justify-between gap-4"
     >
         <input
@@ -18,7 +18,7 @@
         <button
             hx-get="/todos/{{this.id}}?filter={{this.selectedFilter}}"
             hx-target="#todo-edit-{{this.id}}"
-            hx-swap="outerHTML"
+            hx-swap="outerHTML transition:true"
             class="
             border-2
             text-sm

@@ -39,7 +39,7 @@ handlebars.registerHelper("ifEqual", function (arg1, arg2, options) {
 const todoInput = handlebars.compile(readFileSync(`${__dirname}/views/partials/todo-input.handlebars`, "utf-8"));
 const todoItem = handlebars.compile(readFileSync(`${__dirname}/views/partials/todo-item.handlebars`, "utf-8"));
 const filterBtns = handlebars.compile(readFileSync(`${__dirname}/views/partials/filter-btns.handlebars`, "utf-8"));
-// const todoItemEdit = handlebars.compile(readFileSync(`${__dirname}/views/partials/todo-item-edit.handlebars`, "utf-8"));
+const noTodo = handlebars.compile(readFileSync(`${__dirname}/views/partials/no-todo.handlebars`, "utf-8"));
 
 const FILTER_MAP = {
     All: () => true,
@@ -53,16 +53,18 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
  */
 app.get('/', (req, res) => {
     const { todos } = db.data;
+    // Retrieve the filter name passed in - in the URL
     const selectedFilter = req.query.filter ?? 'All';
     const filteredTodos = todos.filter(FILTER_MAP[selectedFilter]);
     res.render('index', {
-        partials: { todoInput, todoItem, filterBtns },
+        partials: { todoInput, todoItem, filterBtns, noTodo },
         todos: filteredTodos,
         filters: FILTER_NAMES.map((filterName) => ({
             filterName,
             count: todos.filter(FILTER_MAP[filterName]).length,
         })),
-        selectedFilter
+        selectedFilter,
+        noTodos: filteredTodos.length
     });
 });
 
@@ -95,15 +97,16 @@ app.post('/todos', async (req, res) => {
     setTimeout(() => {
         res.render("index", {
             layout: false,
-            partials: { todoInput, todoItem, filterBtns },
+            partials: { todoInput, todoItem, filterBtns, noTodo },
             todos: filteredTodos,
             filters: FILTER_NAMES.map((filterName) => ({
                 filterName,
                 count: todos.filter(FILTER_MAP[filterName]).length,
             })),
-            selectedFilter
+            selectedFilter,
+            noTodos: filteredTodos.length
         });
-    }, 2000);
+    }, 1000);
 });
 
 /////////// CHECK MARK TODO AS COMPLETED ///////////
@@ -121,18 +124,19 @@ app.patch('/todos/:id', async (req, res) => {
     todo.completed = !!completed;
 
     await db.write();
-    
-    const { todos } = db.data;
+
+    const filteredTodos = db.data.todos.filter(FILTER_MAP[selectedFilter]);
 
     res.render("index", {
         layout: false,
-        partials: { todoInput, todoItem, filterBtns },
-        todos: db.data.todos,
+        partials: { todoInput, todoItem, filterBtns, noTodo },
+        todos: filteredTodos,
         filters: FILTER_NAMES.map((filterName) => ({
             filterName,
-            count: todos.filter(FILTER_MAP[filterName]).length,
+            count: db.data.todos.filter(FILTER_MAP[filterName]).length,
         })),
-        selectedFilter
+        selectedFilter,
+        noTodos: filteredTodos.length
     });
 });
 
@@ -145,13 +149,16 @@ app.delete('/todos/:id', async (req, res) => {
         db.data.todos.splice(idx, 1);
         await db.write();
     }
+
     return res.render("partials/filter-btns", {
         layout: false,
+        partials: { noTodo },
         filters: FILTER_NAMES.map((filterName) => ({
             filterName,
             count: db.data.todos.filter(FILTER_MAP[filterName]).length,
         })),
-        selectedFilter
+        selectedFilter,
+        noTodos: db.data.todos.filter(FILTER_MAP[selectedFilter]).length
     });
 });
 

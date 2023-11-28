@@ -1,29 +1,19 @@
 {
   "todos": [
     {
-      "id": "f5938be0-b1fb-4ea5-90de-8ad863cd74f0",
-      "completed": true,
-      "name": "Learn Svelte"
-    },
-    {
-      "id": "3f8dd639-9de3-4473-a503-d180f5d4a8a5",
-      "completed": false,
-      "name": "Learn HTMX"
-    },
-    {
-      "id": "fd820cdb-e326-459d-b065-3f2172e1140c",
-      "completed": false,
-      "name": "Learn React"
-    },
-    {
-      "id": "0beee3ed-00ab-4999-9fba-7a6e58828139",
+      "id": "4d959907-3be9-469e-82c7-c4edabe0b704",
       "completed": false,
       "name": "Learn JS"
     },
     {
-      "id": "f68eadee-e132-4ba4-b067-ff550efb6b82",
+      "id": "780235b6-c7b1-4802-b73d-634559a8f529",
       "completed": false,
-      "name": "Learn View"
+      "name": "Learn HTML"
+    },
+    {
+      "id": "9fe6217a-a2d3-4071-84d9-913c83045da9",
+      "completed": false,
+      "name": "Learn Svelte"
     }
   ]
 }
